@@ -40,7 +40,6 @@ class ChariotClient extends Eris.Client {
         this.commandFiles   = [];
         this.eventFiles     = [];
 
-        this._registerInternalCommands();
         this._registerChariotCommands();
         this._registerChariotEvents();
         this._addEventListeners();
@@ -137,18 +136,6 @@ class ChariotClient extends Eris.Client {
      */
     _readyEmitter() {
         Logger.success('CHARIOT STARTUP', 'Successfully started and logged in!');
-    }
-
-    _registerInternalCommands() {
-        if (this.chariotOptions.chariotConfig.defaultHelpCommand) {
-            const defaultHelpCommand = require('../internal/commands/ChariotHelp');
-
-            if (this.commands.find(commandName => commandName.name === defaultHelpCommand.name)) {
-                throw new Error(`Default help command couldn't be initialized because another command with the same name already exists!`);
-            }
-
-            this.commands.set(defaultHelpCommand.name, defaultHelpCommand);
-        }
     }
 
      /**
