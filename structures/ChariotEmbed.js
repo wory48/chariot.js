@@ -1,4 +1,4 @@
-const embedUtil = require("./embedUtil");
+const embedUtil = require("./ChariotEmbedUtil");
 
 class ChariotEmbed {
     constructor(data = {}, skipValidation = true) {
