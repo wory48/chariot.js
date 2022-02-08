@@ -51,7 +51,7 @@ class ChariotClient extends Eris.Client {
      * Adds all event listeners. This can be overwritten in the main bot file which inherits this class
      */
     _addEventListeners() {
-        this.on('ready', this._readyEmitter);
+        this.once('ready', this._readyEmitter);
         this.on('messageCreate', this._runMessageOperators);
     }
 
