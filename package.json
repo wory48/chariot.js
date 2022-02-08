@@ -1,6 +1,6 @@
 {
   "name": "chariot.js",
-  "version": "3.5.0",
+  "version": "3.5.1",
   "description": "An extremely lightweight and extensible Eris client framework",
   "main": "index.js",
   "scripts": {
@@ -29,16 +29,10 @@
   },
   "homepage": "https://chariot.js.org/",
   "dependencies": {
-    "chalk": "^2.4.2",
-    "eris": "^0.15.0",
-    "eris-additions": "^1.2.5",
+    "chalk": "^5.0.0",
+    "eris": "^0.16.0",
+    "eris-additions": "^1.4.1",
     "juration": "^0.1.1",
-    "readdirp": "^3.1.2"
-  },
-  "optionalDependencies": {
-    "@discordjs/opus": "^0.5.0",
-    "bufferutil": "^4.0.1",
-    "sodium-native": "^2.4.6",
-    "zlib-sync": "^0.1.5"
+    "readdirp": "^3.6.0"
   }
 }
