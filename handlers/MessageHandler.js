@@ -72,7 +72,8 @@ class MessageHandler {
                     .setTitle(Util.getLocale(chariotConfig, "userPermissions", "title"))
                     .setDescription(Util.getLocale(chariotConfig, "userPermissions", "description").replace("{missingUserPermissions}", missingUserPermissions.join(', ')))
                 ).catch(() => {
-                    message.channel.createMessage(Util.getLocale(chariotConfig, "userPermissions", "description").replace("{missingUserPermissions}", missingUserPermissions.join(', '))).catch((messageSendError) => {
+                    message.channel.createMessage(Util.getLocale(chariotConfig, "userPermissions", "description").replace("{missingUserPermissions}", missingUserPermissions.join(', ')))
+                    .catch(() => {
                         Logger.warning('Muted', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
                     });
                 });
@@ -102,9 +103,10 @@ class MessageHandler {
 
                 return message.channel.createEmbed(new Embed()
                     .setColor(chariotConfig.primaryColor || 'RANDOM')
-                    .setTitle(Util.getLocale(chariotConfig, "cooldown").replace("{timeLeft}", Math.round(timeLeft)).replace("{timeLeftFormatted}", timeLeftFormatted).replace("{command}", command.name))
+                    .setDescription(Util.getLocale(chariotConfig, "cooldown").replace("{timeLeft}", Math.round(timeLeft)).replace("{timeLeftFormatted}", timeLeftFormatted).replace("{command}", command.name))
                 ).catch(() => {
-                    message.channel.createMessage(Util.getLocale(chariotConfig, "cooldown").replace("{timeLeft}", Math.round(timeLeft)).replace("{timeLeftFormatted}", timeLeftFormatted).replace("{command}", command.name)).catch((messageSendError) => {
+                    message.channel.createMessage(Util.getLocale(chariotConfig, "cooldown").replace("{timeLeft}", Math.round(timeLeft)).replace("{timeLeftFormatted}", timeLeftFormatted).replace("{command}", command.name))
+                    .catch(() => {
                         Logger.warning('Muted', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
                     });
                 });
