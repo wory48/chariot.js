@@ -22,14 +22,14 @@
     "framework",
     "kirameki"
   ],
-  "author": "Riya <kato.hana@outlook.jp>",
+  "author": "Riya <kato.hana@outlook.jp> (Modified for Erna by wory48)",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/riyacchi/chariot.js/issues"
   },
   "homepage": "https://chariot.js.org/",
   "dependencies": {
-    "eris": "^0.16.0",
+    "eris": "^0.16.1",
     "eris-additions": "^1.4.1",
     "juration": "^0.1.1",
     "readdirp": "^3.6.0"
