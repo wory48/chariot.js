@@ -34,7 +34,7 @@ class Logger {
      * @returns {void}
      */
     static success(title, body) {
-        console.log(`\x1b[92m[ ${this._getCurrentTime()} ] [ ${title} ] ${body}`);
+        console.log(`\x1b[92m[ ${this._getCurrentTime()} ] [ ${title} ] ${body}\x1b[92m`);
     }
 
     /**
