@@ -49,8 +49,8 @@ class MessageHandler {
 
             if (missingPermissions.length) {
                 return message.channel.createMessage(Util.getLocale(chariotConfig, "missingPermissions").replace("{command}", command.name).replace("{missingPermissions}", missingPermissions.join(', ')))
-                    .catch((messageSendError) => {
-                        Logger.warning('MUTED', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
+                    .catch(() => {
+                        Logger.warning('Muted', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
                     });
             }
 
@@ -71,9 +71,9 @@ class MessageHandler {
                     .setColor('RED')
                     .setTitle(Util.getLocale(chariotConfig, "userPermissions", "title"))
                     .setDescription(Util.getLocale(chariotConfig, "userPermissions", "description").replace("{missingUserPermissions}", missingUserPermissions.join(', ')))
-                ).catch((embedSendError) => {
+                ).catch(() => {
                     message.channel.createMessage(Util.getLocale(chariotConfig, "userPermissions", "description").replace("{missingUserPermissions}", missingUserPermissions.join(', '))).catch((messageSendError) => {
-                        Logger.warning('MUTED', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
+                        Logger.warning('Muted', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
                     });
                 });
             }
@@ -82,20 +82,6 @@ class MessageHandler {
         /* Check if the command is restricted to the bot owner */
         if (command.owner && !chariotConfig.owner.includes(message.author.id)) {
             return message.channel.createMessage(Util.getLocale(chariotConfig, "owner"));
-        }
-
-        /* Check if an NSFW command is only used in an NSFW channel */
-        if (message.channel.type === 0) {
-            if (command.nsfw && !message.channel.nsfw) {
-                return message.channel.createEmbed(new Embed()
-                    .setColor('RED')
-                    .setTitle(Util.getLocale(chariotConfig, "nsfw").replace("{command}", command.name))
-                ).catch((embedSendError) => {
-                    message.channel.createMessage(Util.getLocale(chariotConfig, "nsfw").replace("{command}", command.name)).catch((messageSendError) => {
-                        Logger.warning('MUTED', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
-                    });
-                });
-            }
         }
 
         /* Command Cooldowns */
@@ -117,9 +103,9 @@ class MessageHandler {
                 return message.channel.createEmbed(new Embed()
                     .setColor(chariotConfig.primaryColor || 'RANDOM')
                     .setTitle(Util.getLocale(chariotConfig, "cooldown").replace("{timeLeft}", Math.round(timeLeft)).replace("{timeLeftFormatted}", timeLeftFormatted).replace("{command}", command.name))
-                ).catch((embedSendError) => {
+                ).catch(() => {
                     message.channel.createMessage(Util.getLocale(chariotConfig, "cooldown").replace("{timeLeft}", Math.round(timeLeft)).replace("{timeLeftFormatted}", timeLeftFormatted).replace("{command}", command.name)).catch((messageSendError) => {
-                        Logger.warning('MUTED', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
+                        Logger.warning('Muted', `Can't send messages in #${message.channel.name} (${message.channel.id})`);
                     });
                 });
             }
@@ -149,11 +135,11 @@ class MessageHandler {
                         const subcommandName = commandArguments.shift();
 
                         command[subcommandName.toLowerCase()](message, commandArguments, this.chariot).catch(chariotCommandExecutionError => {
-                            Logger.error('SUBCOMMAND EXECUTION ERROR', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError.stack}`);
+                            Logger.error('Subcommand Execution Error', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError.stack}`);
                         });
                     } else {
                         command.execute(message, commandArguments, this.chariot).catch(chariotCommandExecutionError => {
-                            Logger.error('COMMAND EXECUTION ERROR', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError.stack}`);
+                            Logger.error('Command Execution Error', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError.stack}`);
                         });
                     }
                 } else {
@@ -161,7 +147,7 @@ class MessageHandler {
                 }
             } else {
                 command.execute(message, commandArguments, this.chariot).catch(chariotCommandExecutionError => {
-                    Logger.error('COMMAND EXECUTION ERROR', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError.stack}`);
+                    Logger.error('Command Execution Error', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError.stack}`);
                 });
             }
         }
@@ -173,7 +159,7 @@ class MessageHandler {
                 next();
             }
         } catch (chariotCommandExecutionError) {
-            Logger.error('COMMAND EXECUTION ERROR', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError}`);
+            Logger.error('Command Execution Error', `Command ${command.name} couldn't be executed because of: ${chariotCommandExecutionError}`);
         }
     }
 }
