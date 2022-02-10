@@ -1,5 +1,3 @@
-const chalk = require('chalk');
-
 /**
  * Colorful logger class for the Chariot.js Client framework featuring various log levels. This logger class is used primarily internally
  */
@@ -36,7 +34,7 @@ class Logger {
      * @returns {void}
      */
     static success(title, body) {
-        console.log(chalk.bold.green(`[ ${this._getCurrentTime()} ] [ ${title} ] `) + body);
+        console.log(`\x1b[92m[ ${this._getCurrentTime()} ] [ ${title} ] ${body}`);
     }
 
     /**
@@ -46,7 +44,7 @@ class Logger {
      * @returns {void}
      */
     static warning(title, body) {
-        console.log(chalk.bold.yellow(`[ ${this._getCurrentTime()} ] [ ${title} ] `) + body);
+        console.log(`\x1b[93m[ ${this._getCurrentTime()} ] [ ${title} ] ${body}`);
     }
 
     /**
@@ -56,7 +54,7 @@ class Logger {
      * @returns {void}
      */
     static error(title, body) {
-        console.log(chalk.bold.red(`[ ${this._getCurrentTime()} ] [ ${title} ] `) + body);
+        console.log(`\x1b[91m[ ${this._getCurrentTime()} ] [ ${title} ] ${body}`);
     }
 
     /**
@@ -66,7 +64,7 @@ class Logger {
      * @returns {void}
      */
     static debug(title, body) {
-        console.log(chalk.bold.magenta(`[ ${this._getCurrentTime()} ] [ ${title} ] `) + body);
+        console.log(`\x1b[95m[ ${this._getCurrentTime()} ] [ ${title} ] ${body}`);
     }
 
     /**
@@ -75,7 +73,7 @@ class Logger {
      * @returns {void}
      */
     static event(body) {
-        console.log(chalk.bold.yellow(`[ ${this._getCurrentTime()} ] [ EVENT ] `) + body);
+        console.log(`\x1b[97m[ ${this._getCurrentTime()} ] [ Event ] ${body}`);
     }
 
     /**
@@ -84,7 +82,7 @@ class Logger {
      * @returns {void}
      */
     static command(body) {
-        console.log(chalk.bold.green(`[ ${this._getCurrentTime()} ] [ COMMAND ] `) + body);
+        console.log(`\x1b[92m[ ${this._getCurrentTime()} ] [ Command ] ${body}`);
     }
 }
 
