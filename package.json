@@ -29,7 +29,6 @@
   },
   "homepage": "https://chariot.js.org/",
   "dependencies": {
-    "chalk": "^5.0.0",
     "eris": "^0.16.0",
     "eris-additions": "^1.4.1",
     "juration": "^0.1.1",
